@@ -1,3 +1,4 @@
+<button (click)="resetFlags()">Reset</button>
 <div *ngIf="flags" class="flags-container">
   <div *ngFor="let flag of flags" class="flag" (click)="deleteFlag(flag.name)">
     <img [src]="flag.flag" class="flag-image" />
