@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { FlagService } from 'src/app/services/flag.service';
 
@@ -17,7 +16,11 @@ export class FlagsComponent implements OnInit {
     this.getFlags();
   }
 
-  getFlags() {
+  getFlags(): void {
     this.flagService.getFlags().subscribe((data) => (this.flags = data));
+  }
+
+  deleteFlag(name: string): void {
+    this.flags = this.flags.filter((f: any) => f.name !== name);
   }
 }

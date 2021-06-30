@@ -1,6 +1,6 @@
 <div *ngIf="flags" class="flags-container">
-  <div *ngFor="let flag of flags" class="flag">
-    <img src="{{ flag.flag }}" class="flag-image" />
+  <div *ngFor="let flag of flags" class="flag" (click)="deleteFlag(flag.name)">
+    <img [src]="flag.flag" class="flag-image" />
     <span>{{ flag.name }}</span>
   </div>
 </div>
