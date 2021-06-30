@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 export class FlagService {
   public flags: any;
   public allFlags: any;
+  public filterWord: string = '';
 
   url = 'https://restcountries.eu/rest/v2';
 
@@ -21,5 +22,13 @@ export class FlagService {
 
   resetFlags(): void {
     this.flags = this.allFlags;
+  }
+
+  flagsForDisplay(): any {
+    return this.filterWord.length > 0
+      ? this.flags.filter((f: any) =>
+          f.name.toLowerCase().includes(this.filterWord.toLowerCase())
+        )
+      : this.flags;
   }
 }

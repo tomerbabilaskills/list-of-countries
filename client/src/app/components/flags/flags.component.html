@@ -1,7 +1,7 @@
 <button (click)="flagService.resetFlags()">Reset</button>
 <div *ngIf="flagService.flags" class="flags-container">
   <div
-    *ngFor="let flag of flagService.flags"
+    *ngFor="let flag of flagService.flagsForDisplay()"
     class="flag"
     (click)="flagService.deleteFlag(flag.name)"
   >
