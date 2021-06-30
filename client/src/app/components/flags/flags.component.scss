@@ -1,0 +1,13 @@
+.flags-container {
+  display: flex;
+  flex-wrap: wrap;
+  .flag {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    .flag-image {
+      width: 150px;
+      height: 100px;
+    }
+  }
+}

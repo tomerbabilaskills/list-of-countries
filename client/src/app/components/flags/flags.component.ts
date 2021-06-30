@@ -18,6 +18,6 @@ export class FlagsComponent implements OnInit {
   }
 
   getFlags() {
-    this.flagService.getFlags().subscribe((data) => console.log(data));
+    this.flagService.getFlags().subscribe((data) => (this.flags = data));
   }
 }
