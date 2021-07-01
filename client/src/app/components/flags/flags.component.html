@@ -1,0 +1,8 @@
+<div *ngIf="flagService.flags" class="flags-container">
+  <div
+    *ngFor="let flag of flagService.flagsForDisplay()"
+    (click)="flagService.deleteFlag(flag.name)"
+  >
+    <app-flag [flag]="flag"></app-flag>
+  </div>
+</div>
