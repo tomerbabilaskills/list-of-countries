@@ -8,6 +8,8 @@ import { FlagService } from 'src/app/services/flag.service';
   styleUrls: ['./flags.component.scss'],
 })
 export class FlagsComponent implements OnInit {
+  canShow: boolean = false;
+
   constructor(public flagService: FlagService) {}
 
   ngOnInit(): void {
