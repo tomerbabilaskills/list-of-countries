@@ -3,4 +3,8 @@
   id="search-box"
   (keyup.enter)="changeFilterWord(searchBox.value)"
   placeholder="Press ENTER to search"
+  list="searches"
 />
+<datalist id="searches">
+  <option *ngFor="let search of getRecentSearches()">{{ search }}</option>
+</datalist>

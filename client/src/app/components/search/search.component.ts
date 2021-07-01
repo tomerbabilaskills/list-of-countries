@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FlagService } from 'src/app/services/flag.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-search',
@@ -7,11 +9,33 @@ import { FlagService } from 'src/app/services/flag.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-  constructor(private flagService: FlagService) {}
+  key: string = 'flags';
 
-  ngOnInit(): void {}
+  constructor(
+    private flagService: FlagService,
+    private storageService: StorageService
+  ) {}
+
+  ngOnInit(): void {
+    let checkStorage = this.storageService.getItem(this.key);
+    if (checkStorage === null) {
+      this.storageService.setItem(this.key, JSON.stringify([]));
+    }
+  }
 
   changeFilterWord(term: string): void {
+    const storage: string[] = JSON.parse(
+      this.storageService.getItem(this.key)!
+    );
+
     this.flagService.filterWord = term;
+
+    if (storage.length === 5) storage.pop();
+    storage.unshift(term);
+    this.storageService.setItem(this.key, JSON.stringify(storage));
+  }
+
+  getRecentSearches(): string[] {
+    return JSON.parse(this.storageService.getItem(this.key)!);
   }
 }
