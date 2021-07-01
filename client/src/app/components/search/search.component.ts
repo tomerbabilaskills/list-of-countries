@@ -24,15 +24,16 @@ export class SearchComponent implements OnInit {
   }
 
   changeFilterWord(term: string): void {
-    const storage: string[] = JSON.parse(
-      this.storageService.getItem(this.key)!
-    );
+    if (term) {
+      const storage: string[] = JSON.parse(
+        this.storageService.getItem(this.key)!
+      );
+      if (storage.length === 5) storage.pop();
+      storage.unshift(term);
+      this.storageService.setItem(this.key, JSON.stringify(storage));
+    }
 
     this.flagService.filterWord = term;
-
-    if (storage.length === 5) storage.pop();
-    storage.unshift(term);
-    this.storageService.setItem(this.key, JSON.stringify(storage));
   }
 
   getRecentSearches(): string[] {
