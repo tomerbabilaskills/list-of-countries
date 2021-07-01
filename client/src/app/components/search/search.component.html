@@ -1,1 +1,6 @@
-<input #searchBox id="search-box" (input)="changeFilterWord(searchBox.value)" />
+<input
+  #searchBox
+  id="search-box"
+  (keyup.enter)="changeFilterWord(searchBox.value)"
+  placeholder="Press ENTER to search"
+/>

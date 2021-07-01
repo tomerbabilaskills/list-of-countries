@@ -13,6 +13,5 @@ export class SearchComponent implements OnInit {
 
   changeFilterWord(term: string): void {
     this.flagService.filterWord = term;
-    console.log(this.flagService.filterWord);
   }
 }
