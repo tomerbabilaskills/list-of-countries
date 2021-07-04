@@ -1,0 +1,18 @@
+.login-input {
+  padding: 0.5rem;
+  width: 20vw;
+  max-width: 400px;
+  box-sizing: border-box;
+  border: 1px #cccccc solid;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(179, 179, 179, 0.75);
+}
+
+.login-button {
+  padding: 0.5rem;
+  background-color: #44c755;
+  border-radius: 25px;
+  border: 1px solid #44c755;
+  cursor: pointer;
+  color: #ffffff;
+}
