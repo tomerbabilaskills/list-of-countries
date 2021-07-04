@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginGuard } from 'src/app/guards/login.guard';
 
 @Component({
   selector: 'app-login-form',
@@ -8,12 +8,12 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private loginGuard: LoginGuard, private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(value: string): void {
-    this.loginService.userMail = value;
+    this.loginGuard.userMail = value;
     this.router.navigate(['/flags']);
   }
 }
