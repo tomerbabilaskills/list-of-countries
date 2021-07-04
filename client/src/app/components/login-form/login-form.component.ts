@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginGuard } from 'src/app/guards/login.guard';
+
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,12 +9,13 @@ import { LoginGuard } from 'src/app/guards/login.guard';
   styleUrls: ['./login-form.component.scss'],
 })
 export class LoginFormComponent implements OnInit {
-  constructor(private loginGuard: LoginGuard, private router: Router) {}
+  key: string = 'email';
+  constructor(private router: Router, private storageService: StorageService) {}
 
   ngOnInit(): void {}
 
-  onSubmit(value: any): void {
-    this.loginGuard.userMail = value;
+  onSubmit(value: string): void {
+    this.storageService.setItem(this.key, value);
     this.router.navigate(['/flags']);
   }
 }

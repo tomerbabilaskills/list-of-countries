@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginGuard } from 'src/app/guards/login.guard';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-logout-button',
@@ -9,12 +9,13 @@ import { LoginGuard } from 'src/app/guards/login.guard';
   styleUrls: ['./logout-button.component.scss'],
 })
 export class LogoutButtonComponent implements OnInit {
-  constructor(private loginGuard: LoginGuard, private router: Router) {}
+  key: string = 'email';
+  constructor(private router: Router, private storageService: StorageService) {}
 
   ngOnInit(): void {}
 
   logout(): void {
-    this.loginGuard.userMail = '';
-    this.router.navigate(['/']);
+    this.storageService.setItem(this.key, '');
+    this.router.navigate(['/login']);
   }
 }
