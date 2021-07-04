@@ -1,4 +1,2 @@
-<input class="login-input" #loginInput class="login-input" />
-<button class="login-button" type="submit" (click)="onSubmit(loginInput.value)">
-  Login
-</button>
+<input class="login-input" #loginInput placeholder="Enter email" />
+<button class="login-button" (click)="onSubmit(loginInput.value)">Login</button>

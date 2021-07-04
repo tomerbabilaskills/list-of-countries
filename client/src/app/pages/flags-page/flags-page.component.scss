@@ -1,0 +1,14 @@
+.dashboard {
+  display: flex;
+  justify-content: center;
+  width: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard {
+    flex-direction: column;
+    .buttons-container {
+      margin-top: 10px;
+    }
+  }
+}

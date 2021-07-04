@@ -1,15 +1,9 @@
 input {
   padding: 0.5rem;
   width: 80vw;
-  max-width: 600px;
+  max-width: 400px;
   box-sizing: border-box;
   border: 1px #cccccc solid;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(179, 179, 179, 0.75);
-}
-
-@media only screen and (max-width: 600px) {
-  input {
-    width: auto;
-  }
 }

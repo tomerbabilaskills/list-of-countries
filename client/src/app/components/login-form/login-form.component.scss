@@ -1,6 +1,6 @@
 .login-input {
   padding: 0.5rem;
-  width: 20vw;
+  width: 80vw;
   max-width: 400px;
   box-sizing: border-box;
   border: 1px #cccccc solid;
@@ -15,4 +15,15 @@
   border: 1px solid #44c755;
   cursor: pointer;
   color: #ffffff;
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-input {
+    width: 80vw;
+  }
+  .login-button {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }

@@ -12,7 +12,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit(value: string): void {
+  onSubmit(value: any): void {
     this.loginGuard.userMail = value;
     this.router.navigate(['/flags']);
   }
