@@ -13,14 +13,21 @@ export class MapsPageComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    const moveoPosition = { lat: 32.06472745555116, lng: 34.771794568855235 };
     const mapProperties = {
-      center: new google.maps.LatLng(35.2271, -80.8431),
+      center: new google.maps.LatLng(moveoPosition),
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
+
     this.map = new google.maps.Map(
       this.mapElement.nativeElement,
       mapProperties
     );
+
+    const marker = new google.maps.Marker({
+      position: moveoPosition,
+      map: this.map,
+    });
   }
 }
