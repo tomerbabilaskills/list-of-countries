@@ -15,6 +15,10 @@ export class MapsPageComponent implements OnInit {
 
   map!: google.maps.Map;
   autocomplete!: google.maps.places.Autocomplete;
+  directionsService!: google.maps.DirectionsService;
+  directionsRenderer!: google.maps.DirectionsRenderer;
+
+  isRouteShow: boolean = false;
 
   constructor() {}
 
@@ -41,6 +45,10 @@ export class MapsPageComponent implements OnInit {
       this.mapElement.nativeElement,
       mapProperties
     );
+
+    // Create directionsRenderer and directionService
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
 
     // Add my style to the map
     this.map.mapTypes.set('mapStyle', styledMapType);
@@ -72,5 +80,29 @@ export class MapsPageComponent implements OnInit {
       }
       this.autocompleteElement.nativeElement.value = '';
     });
+  }
+
+  showRoute() {
+    const myHousePosition = { lat: 31.963706524772967, lng: 34.81632252652455 };
+    const moveoPosition = { lat: 32.06472745555116, lng: 34.771794568855235 };
+    const request = {
+      origin: myHousePosition,
+      destination: moveoPosition,
+      travelMode: 'DRIVING' as google.maps.TravelMode,
+    };
+
+    if (!this.isRouteShow) {
+      this.directionsService.route(request, (result, status) => {
+        if (status == 'OK') {
+          this.directionsRenderer.setMap(this.map);
+          this.directionsRenderer.setDirections(result);
+        }
+      });
+    } else {
+      this.directionsRenderer.setMap(null);
+      this.map.setCenter(moveoPosition);
+    }
+
+    this.isRouteShow = !this.isRouteShow;
   }
 }
