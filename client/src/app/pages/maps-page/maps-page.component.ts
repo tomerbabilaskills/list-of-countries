@@ -100,7 +100,6 @@ export class MapsPageComponent implements OnInit {
       });
     } else {
       this.directionsRenderer.setMap(null);
-      this.map.setCenter(moveoPosition);
     }
 
     this.isRouteShow = !this.isRouteShow;

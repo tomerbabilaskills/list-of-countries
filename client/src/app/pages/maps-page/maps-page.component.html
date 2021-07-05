@@ -1,5 +1,12 @@
-<button (click)="showRoute()">
-  {{ !isRouteShow ? "Show route" : "Hide route" }}
-</button>
-<input #autocomplete placeholder="Enter a place" type="text" />
+<div class="dashboard">
+  <input
+    #autocomplete
+    placeholder="Enter a place"
+    type="text"
+    class="autocomplete"
+  />
+  <button (click)="showRoute()" class="show-route">
+    {{ !isRouteShow ? "Show route" : "Hide route" }}
+  </button>
+</div>
 <div #map class="map"></div>
