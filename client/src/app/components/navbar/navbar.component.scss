@@ -1,0 +1,20 @@
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  nav {
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: #ffffff;
+      padding: 0.5rem;
+      background-color: #4488c7;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    a.active {
+      background-color: #353535;
+    }
+  }
+}

@@ -13,9 +13,10 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { MapsPageComponent } from './pages/maps-page/maps-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [AppComponent, FlagsComponent, SearchComponent, FlagComponent, ResetButtonComponent, FlagsPageComponent, LoginPageComponent, LoginFormComponent, LogoutButtonComponent, MapsPageComponent],
+  declarations: [AppComponent, FlagsComponent, SearchComponent, FlagComponent, ResetButtonComponent, FlagsPageComponent, LoginPageComponent, LoginFormComponent, LogoutButtonComponent, MapsPageComponent, NavbarComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

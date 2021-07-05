@@ -9,8 +9,8 @@ import { MapsPageComponent } from './pages/maps-page/maps-page.component';
 
 const routes: Routes = [
   { path: 'flags', component: FlagsPageComponent, canActivate: [LoginGuard] },
+  { path: 'maps', component: MapsPageComponent, canActivate: [LoginGuard] },
   { path: 'login', component: LoginPageComponent },
-  { path: 'maps', component: MapsPageComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
