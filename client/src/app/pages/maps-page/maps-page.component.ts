@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {} from 'google.maps';
+import { Loader } from '@googlemaps/js-api-loader';
 
 import { mapStyle } from '../../mapStyle';
 
@@ -19,75 +20,80 @@ export class MapsPageComponent implements OnInit {
   directionsRenderer!: google.maps.DirectionsRenderer;
 
   isRouteShow: boolean = false;
+  moveoPosition = { lat: 32.06472745555116, lng: 34.771794568855235 };
+  myHousePosition = { lat: 31.963706524772967, lng: 34.81632252652455 };
 
   constructor() {}
 
   ngOnInit(): void {
-    // Moveo location
-    const moveoPosition = { lat: 32.06472745555116, lng: 34.771794568855235 };
-
-    // My style
-    const styledMapType = new google.maps.StyledMapType(mapStyle, {
-      name: 'My Style',
+    const loader = new Loader({
+      apiKey: 'AIzaSyAX3OCPyK2NEKr-adn3r2JKcBPtrmMwFYc',
+      version: 'weekly',
+      libraries: ['places'],
     });
 
-    // Set properties to the map
-    const mapProperties = {
-      center: new google.maps.LatLng(moveoPosition),
-      zoom: 15,
-      mapTypeControlOptions: {
-        mapTypeIds: ['roadmap', 'hybrid', 'mapStyle'],
-      },
-    };
+    loader.load().then(() => {
+      // My style
+      const styledMapType = new google.maps.StyledMapType(mapStyle, {
+        name: 'My Style',
+      });
 
-    // Create map
-    this.map = new google.maps.Map(
-      this.mapElement.nativeElement,
-      mapProperties
-    );
+      // Set properties to the map
+      const mapProperties = {
+        center: this.moveoPosition,
+        zoom: 15,
+        mapTypeControlOptions: {
+          mapTypeIds: ['roadmap', 'hybrid', 'mapStyle'],
+        },
+      };
 
-    // Create directionsRenderer and directionService
-    this.directionsService = new google.maps.DirectionsService();
-    this.directionsRenderer = new google.maps.DirectionsRenderer();
+      // Create map
+      this.map = new google.maps.Map(
+        this.mapElement.nativeElement,
+        mapProperties
+      );
 
-    // Add my style to the map
-    this.map.mapTypes.set('mapStyle', styledMapType);
-    this.map.setMapTypeId('roadmap'); // Set roadmap to default
+      // Create directionsRenderer and directionService
+      this.directionsService = new google.maps.DirectionsService();
+      this.directionsRenderer = new google.maps.DirectionsRenderer();
 
-    // Add marker to Moveo location
-    new google.maps.Marker({
-      position: moveoPosition,
-      map: this.map,
-    });
+      // Add my style to the map
+      this.map.mapTypes.set('mapStyle', styledMapType);
+      this.map.setMapTypeId('roadmap'); // Set roadmap to default
 
-    // Add autocomplete section
-    this.autocomplete = new google.maps.places.Autocomplete(
-      this.autocompleteElement.nativeElement,
-      { types: ['address'], fields: ['place_id', 'geometry', 'name'] }
-    );
+      // Add marker to Moveo location
+      new google.maps.Marker({
+        position: this.moveoPosition,
+        map: this.map,
+      });
 
-    // Re-center and create a new marker at the chosen location
-    this.autocomplete.addListener('place_changed', () => {
-      const place = this.autocomplete.getPlace();
-      if (!place.geometry) {
-        console.log('Place not found');
-      } else {
-        new google.maps.Marker({
-          position: place.geometry.location,
-          map: this.map,
-        });
-        this.map.setCenter(place.geometry.location!);
-      }
-      this.autocompleteElement.nativeElement.value = '';
+      // Add autocomplete section
+      this.autocomplete = new google.maps.places.Autocomplete(
+        this.autocompleteElement.nativeElement,
+        { types: ['address'], fields: ['place_id', 'geometry', 'name'] }
+      );
+
+      // Re-center and create a new marker at the chosen location
+      this.autocomplete.addListener('place_changed', () => {
+        const place = this.autocomplete.getPlace();
+        if (!place.geometry) {
+          console.log('Place not found');
+        } else {
+          new google.maps.Marker({
+            position: place.geometry.location,
+            map: this.map,
+          });
+          this.map.setCenter(place.geometry.location!);
+        }
+        this.autocompleteElement.nativeElement.value = '';
+      });
     });
   }
 
   showRoute() {
-    const myHousePosition = { lat: 31.963706524772967, lng: 34.81632252652455 };
-    const moveoPosition = { lat: 32.06472745555116, lng: 34.771794568855235 };
     const request = {
-      origin: myHousePosition,
-      destination: moveoPosition,
+      origin: this.myHousePosition,
+      destination: this.moveoPosition,
       travelMode: 'DRIVING' as google.maps.TravelMode,
     };
 
