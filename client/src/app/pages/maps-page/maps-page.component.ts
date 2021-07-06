@@ -65,6 +65,7 @@ export class MapsPageComponent implements OnInit {
       new google.maps.Marker({
         position: this.moveoPosition,
         map: this.map,
+        label: 'Moveo Office',
       });
 
       // Add autocomplete section
@@ -82,6 +83,7 @@ export class MapsPageComponent implements OnInit {
           new google.maps.Marker({
             position: place.geometry.location,
             map: this.map,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
           });
           this.map.setCenter(place.geometry.location!);
         }
