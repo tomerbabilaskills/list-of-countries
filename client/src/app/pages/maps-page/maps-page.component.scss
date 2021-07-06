@@ -1,30 +1,26 @@
+@use '../../../assets/styles/base';
+
 :host {
   height: 100%;
   .dashboard {
     margin-bottom: 10px;
     .autocomplete {
-      padding: 0.5rem;
-      width: 80vw;
-      max-width: 400px;
-      box-sizing: border-box;
-      border: 1px #cccccc solid;
-      border-radius: 5px;
-      box-shadow: 0 0 5px rgba(179, 179, 179, 0.75);
+      @include base.input;
     }
-
     .show-route {
-      padding: 0.5rem;
-      background-color: #c7af44;
-      border-radius: 25px;
-      border: 1px solid #c7af44;
-      cursor: pointer;
-      color: #ffffff;
+      @include base.button(#c7af44);
       margin-left: 10px;
     }
   }
-
   .map {
     width: 100vw;
     height: 85%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .show-route {
+    margin-left: 0;
+    margin-top: 10px;
   }
 }

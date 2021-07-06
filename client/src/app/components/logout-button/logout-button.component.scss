@@ -1,9 +1,6 @@
+@use '../../../assets/styles/base';
+
 button {
-  padding: 0.5rem;
-  background-color: #c74444;
-  border-radius: 25px;
-  border: 1px solid #c74444;
-  cursor: pointer;
-  color: #ffffff;
+  @include base.button(#c74444);
   margin-left: 10px;
 }

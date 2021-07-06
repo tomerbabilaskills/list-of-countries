@@ -9,12 +9,14 @@
       color: #ffffff;
       padding: 0.5rem;
       background-color: #4488c7;
+      border: 1px #4488c7 solid;
       border-radius: 25px;
       cursor: pointer;
       margin-left: 10px;
     }
     a.active {
-      background-color: #353535;
+      background-color: #ffffff;
+      color: #4488c7;
     }
   }
 }
